@@ -4,17 +4,20 @@ const bp=require('body-parser');
 const {connect}=require('mongoose');
 const {DB,PORT}=require('./Config/index');
 const {success,error}=require('consola');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser').json();
 
 // * App Initialization
-
 const app=express();
+
+
+// * user router middlewares
+app.use('/api/users',bodyParser, require('./Routes/users'))
 
 const startApp = async() => {
     
     // * Middlewares
     app.use(cors);
-    app.use(bodyParser.json());
+    app.use(bodyParser);
 
     try {
 
@@ -35,7 +38,7 @@ const startApp = async() => {
     catch (error) {
             error({message:`Unable to connect with DB  ${err}`,badge:true})
     }
-
+    
 }
 
 // * Calling App Start Method

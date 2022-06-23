@@ -1,0 +1,8 @@
+POST  http://localhost:5000/api/users/admin-registration
+
+{
+    "username": "Mesum1010",
+    "email": "Mesum1010@gmail.com",
+    "name": "Muhammmad Mesum",
+    "password": "sam9912"
+}
