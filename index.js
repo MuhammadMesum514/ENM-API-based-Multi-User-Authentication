@@ -2,6 +2,7 @@ const express=require('express');
 const cors=require('cors');
 const bp=require('body-parser');
 const {connect}=require('mongoose');
+const passport=require('passport'); 
 const {DB,PORT}=require('./Config/index');
 const {success,error}=require('consola');
 const bodyParser = require('body-parser').json();
@@ -9,6 +10,10 @@ const bodyParser = require('body-parser').json();
 // * App Initialization
 const app=express();
 
+// * Initialization Passport 
+app.use(passport.initialize());
+
+require('./Middleware/Passport')(passport);
 
 // * user router middlewares
 app.use('/api/users',bodyParser, require('./Routes/users'))
